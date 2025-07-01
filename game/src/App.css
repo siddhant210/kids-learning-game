@@ -1,0 +1,591 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Light Theme */
+body.theme-light {
+  font-family: 'Nunito', sans-serif;
+  background: 
+    url('./game_assets/backgrounds/cartoon_bg_light.png') center/cover no-repeat,
+    linear-gradient(135deg, 
+      #87CEEB 0%, 
+      #98FB98 25%, 
+      #FFE4B5 50%, 
+      #FFA07A 75%, 
+      #DDA0DD 100%);
+  background-size: cover, 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+/* Dark Theme */
+body.theme-dark {
+  font-family: 'Nunito', sans-serif;
+  background: 
+    url('./game_assets/backgrounds/cartoon_bg_dark.png') center/cover no-repeat,
+    linear-gradient(135deg, 
+      #2C1810 0%, 
+      #4A148C 25%, 
+      #1A237E 50%, 
+      #0D47A1 75%, 
+      #1B5E20 100%);
+  background-size: cover, 400% 400%;
+  animation: gradientShift 25s ease infinite;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  transition: all 0.5s ease;
+}
+
+/* Default fallback */
+body {
+  font-family: 'Nunito', sans-serif;
+  background: 
+    url('./game_assets/backgrounds/cartoon_bg_light.png') center/cover no-repeat,
+    linear-gradient(135deg, 
+      #87CEEB 0%, 
+      #98FB98 25%, 
+      #FFE4B5 50%, 
+      #FFA07A 75%, 
+      #DDA0DD 100%);
+  background-size: cover, 400% 400%;
+  animation: gradientShift 20s ease infinite;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated background gradient */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating background elements for light theme */
+body.theme-light::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Floating background elements for dark theme */
+body.theme-dark::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(75, 0, 130, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Floating shapes animation for light theme */
+body.theme-light::after {
+  content: '⭐ 🌟 ✨ 🎈 🎨 🌈 🦄 🎪 🎭 🌸 🦋 🌺 ⭐ 🌟 ✨ 🎈 🎨 🌈 🦄 🎪 🎭 🌸 🦋 🌺';
+  position: fixed;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  font-size: 30px;
+  line-height: 100px;
+  animation: floatingShapes 35s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
+
+/* Floating shapes animation for dark theme */
+body.theme-dark::after {
+  content: '🌙 ⭐ ✨ 🌟 💫 🦉 🌌 🔮 🎭 🎪 🌙 ⭐ ✨ 🌟 💫 🦉 🌌 🔮 🎭 🎪';
+  position: fixed;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  font-size: 30px;
+  line-height: 100px;
+  animation: floatingShapes 40s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+}
+
+@keyframes floatingShapes {
+  0% { transform: translateY(100vh) rotate(0deg); }
+  100% { transform: translateY(-100px) rotate(360deg); }
+}
+
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Main title styling for light theme */
+.theme-light .main-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 4rem;
+  background: linear-gradient(45deg, #e74c3c, #3498db, #9b59b6, #e67e22, #f39c12);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbowText 3s ease-in-out infinite, bounce 2s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+}
+
+/* Main title styling for dark theme */
+.theme-dark .main-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 4rem;
+  background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #ff3838, #ff9ff3);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbowText 3s ease-in-out infinite, bounce 2s ease-in-out infinite;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+  filter: drop-shadow(0 8px 16px rgba(255, 255, 255, 0.3));
+}
+
+/* Default main title */
+.main-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 4rem;
+  background: linear-gradient(45deg, #e74c3c, #3498db, #9b59b6, #e67e22, #f39c12);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbowText 3s ease-in-out infinite, bounce 2s ease-in-out infinite;
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes rainbowText {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  60% { transform: translateY(-5px); }
+}
+
+/* Subtitle for light theme */
+.theme-light .subtitle {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  font-weight: 700;
+  text-shadow: 0 4px 8px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 40px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Subtitle for dark theme */
+.theme-dark .subtitle {
+  font-size: 1.8rem;
+  color: #f7fafc;
+  font-weight: 700;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.8), 0 2px 4px rgba(255, 255, 255, 0.3);
+  margin-bottom: 40px;
+  animation: glowDark 2s ease-in-out infinite alternate;
+}
+
+/* Default subtitle */
+.subtitle {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  font-weight: 700;
+  text-shadow: 0 4px 8px rgba(255, 255, 255, 0.9), 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 40px;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 4px 8px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5); }
+  to { text-shadow: 0 4px 8px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8); }
+}
+
+@keyframes glowDark {
+  from { text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(138, 43, 226, 0.5); }
+  to { text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 30px rgba(138, 43, 226, 0.8); }
+}
+
+/* Language selector */
+.language-selector {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 30px;
+  margin-bottom: 40px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  animation: cardFloat 6s ease-in-out infinite;
+}
+
+/* Dark theme language selector */
+.theme-dark .language-selector {
+  background: rgba(45, 55, 72, 0.95);
+  border: 3px solid rgba(138, 43, 226, 0.3);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(138, 43, 226, 0.3);
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+.language-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme language title */
+.theme-dark .language-title {
+  color: #e2e8f0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.language-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.language-btn {
+  background: linear-gradient(145deg, #ff6b6b, #ee5a52);
+  border: none;
+  border-radius: 20px;
+  padding: 15px 25px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 
+    0 8px 16px rgba(255, 107, 107, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.language-btn:nth-child(2) {
+  background: linear-gradient(145deg, #4ecdc4, #45b7d1);
+  box-shadow: 
+    0 8px 16px rgba(78, 205, 196, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.language-btn:nth-child(3) {
+  background: linear-gradient(145deg, #ffeaa7, #fdcb6e);
+  box-shadow: 
+    0 8px 16px rgba(255, 234, 167, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.language-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.language-btn:hover::before {
+  left: 100%;
+}
+
+.language-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.language-btn:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Game cards container */
+.game-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* Individual game card */
+.game-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 40px 30px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
+  animation: cardPulse 4s ease-in-out infinite;
+}
+
+/* Dark theme game card */
+.theme-dark .game-card {
+  background: rgba(45, 55, 72, 0.95);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(138, 43, 226, 0.3);
+}
+
+@keyframes cardPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  background-size: 400% 400%;
+  animation: gradientShift 8s ease infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+}
+
+.game-card:hover::before {
+  opacity: 0.1;
+}
+
+.game-card:nth-child(1) {
+  border-color: #ff6b6b;
+  animation-delay: 0s;
+}
+
+.game-card:nth-child(2) {
+  border-color: #4ecdc4;
+  animation-delay: 1s;
+}
+
+.game-card:nth-child(3) {
+  border-color: #45b7d1;
+  animation-delay: 2s;
+}
+
+.game-card:hover {
+  transform: translateY(-15px) scale(1.05) rotate(2deg);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border-color: #ffd700;
+}
+
+/* Dark theme game card hover */
+.theme-dark .game-card:hover {
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(138, 43, 226, 0.5);
+}
+
+.game-icon {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  animation: iconBounce 3s ease-in-out infinite;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes iconBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(0deg); }
+  40% { transform: translateY(-15px) rotate(5deg); }
+  60% { transform: translateY(-8px) rotate(-3deg); }
+}
+
+.game-card:nth-child(1) .game-icon {
+  animation-delay: 0.5s;
+}
+
+.game-card:nth-child(2) .game-icon {
+  animation-delay: 1.5s;
+}
+
+.game-card:nth-child(3) .game-icon {
+  animation-delay: 2.5s;
+}
+
+.game-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.2rem;
+  color: #333;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  animation: titleShimmer 4s ease-in-out infinite;
+}
+
+/* Dark theme game title */
+.theme-dark .game-title {
+  color: #e2e8f0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes titleShimmer {
+  0%, 100% { color: #333; }
+  50% { color: #666; }
+}
+
+/* Dark theme title shimmer */
+.theme-dark .game-title {
+  animation: titleShimmerDark 4s ease-in-out infinite;
+}
+
+@keyframes titleShimmerDark {
+  0%, 100% { color: #e2e8f0; }
+  50% { color: #cbd5e0; }
+}
+
+.game-description {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Dark theme game description */
+.theme-dark .game-description {
+  color: #a0aec0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.3rem;
+  }
+  
+  .language-selector {
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .language-buttons {
+    gap: 10px;
+  }
+  
+  .language-btn {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+  
+  .game-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .game-card {
+    padding: 30px 20px;
+  }
+  
+  .game-icon {
+    font-size: 4rem;
+  }
+  
+  .game-title {
+    font-size: 1.8rem;
+  }
+  
+  .game-description {
+    font-size: 1rem;
+  }
+  
+  body::after {
+    font-size: 20px;
+    line-height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .App {
+    padding: 15px;
+  }
+  
+  .main-title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .language-selector {
+    padding: 15px;
+  }
+  
+  .language-btn {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .game-icon {
+    font-size: 3rem;
+  }
+  
+  .game-title {
+    font-size: 1.5rem;
+  }
+}
+

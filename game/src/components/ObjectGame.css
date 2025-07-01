@@ -1,0 +1,358 @@
+.object-game {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+.object-display {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.object-card {
+  background: white;
+  border-radius: 30px;
+  padding: 50px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  min-width: 400px;
+  border: 5px solid transparent;
+}
+
+.object-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+  border-color: #feca57;
+}
+
+.object-card:active {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+.object-emoji {
+  font-size: 8rem;
+  margin-bottom: 20px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.object-name {
+  font-family: 'Fredoka One', cursive;
+  font-size: 3rem;
+  color: #feca57;
+  text-shadow: 3px 3px 6px rgba(254, 202, 87, 0.3);
+  margin-bottom: 20px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.object-details {
+  margin: 20px 0;
+}
+
+.object-category,
+.object-color {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin: 10px 0;
+  padding: 10px 20px;
+  background: rgba(254, 202, 87, 0.1);
+  border-radius: 15px;
+  display: inline-block;
+  margin: 5px;
+}
+
+.matching-game {
+  background: white;
+  border-radius: 30px;
+  padding: 40px;
+  margin-bottom: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.matching-instructions {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.matching-instructions h3 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2rem;
+  color: #333;
+}
+
+.matching-area {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.objects-to-match {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background: rgba(254, 202, 87, 0.1);
+  border-radius: 20px;
+  border: 3px dashed #feca57;
+}
+
+.draggable-object {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  cursor: grab;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border: 3px solid transparent;
+}
+
+.draggable-object:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  border-color: #feca57;
+}
+
+.draggable-object:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+}
+
+.draggable-object .object-emoji {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  animation: none;
+}
+
+.draggable-object .object-name {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+  animation: none;
+}
+
+.category-zones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.category-zone {
+  background: rgba(78, 205, 196, 0.1);
+  border: 3px dashed #4ecdc4;
+  border-radius: 20px;
+  padding: 20px;
+  text-align: center;
+  min-height: 150px;
+  transition: all 0.3s ease;
+}
+
+.category-zone:hover {
+  background: rgba(78, 205, 196, 0.2);
+  border-color: #26d0ce;
+}
+
+.category-zone h4 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  color: #4ecdc4;
+  margin-bottom: 15px;
+}
+
+.matched-objects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.matched-object {
+  font-size: 2rem;
+  background: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  animation: popIn 0.5s ease-out;
+}
+
+.completion-message {
+  text-align: center;
+  padding: 30px;
+  background: linear-gradient(45deg, #2ed573, #7bed9f);
+  border-radius: 20px;
+  color: white;
+  margin-top: 30px;
+}
+
+.completion-message h2 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.floating-objects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.floating-object {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.2;
+  animation: float 8s ease-in-out infinite;
+}
+
+.floating-object:nth-child(1) {
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.floating-object:nth-child(2) {
+  top: 65%;
+  right: 8%;
+  animation-delay: 2s;
+}
+
+.floating-object:nth-child(3) {
+  top: 90%;
+  left: 12%;
+  animation-delay: 4s;
+}
+
+.floating-object:nth-child(4) {
+  top: 25%;
+  right: 18%;
+  animation-delay: 6s;
+}
+
+/* Drag and Drop Effects */
+.category-zone.drag-over {
+  background: rgba(78, 205, 196, 0.3);
+  border-color: #26d0ce;
+  transform: scale(1.02);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .object-card {
+    padding: 30px;
+    min-width: 300px;
+  }
+  
+  .object-emoji {
+    font-size: 6rem;
+  }
+  
+  .object-name {
+    font-size: 2rem;
+  }
+  
+  .object-category,
+  .object-color {
+    font-size: 1.2rem;
+  }
+  
+  .matching-area {
+    gap: 20px;
+  }
+  
+  .objects-to-match {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+  }
+  
+  .category-zones {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .category-zone {
+    min-height: 120px;
+  }
+  
+  .draggable-object .object-emoji {
+    font-size: 2.5rem;
+  }
+  
+  .completion-message h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .object-card {
+    padding: 20px;
+    min-width: 250px;
+  }
+  
+  .object-emoji {
+    font-size: 4rem;
+  }
+  
+  .object-name {
+    font-size: 1.5rem;
+  }
+  
+  .object-category,
+  .object-color {
+    font-size: 1rem;
+    padding: 8px 15px;
+  }
+  
+  .matching-instructions h3 {
+    font-size: 1.5rem;
+  }
+  
+  .objects-to-match {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 10px;
+    padding: 15px;
+  }
+  
+  .draggable-object {
+    padding: 15px;
+  }
+  
+  .draggable-object .object-emoji {
+    font-size: 2rem;
+  }
+  
+  .draggable-object .object-name {
+    font-size: 0.8rem;
+  }
+  
+  .category-zone {
+    padding: 15px;
+    min-height: 100px;
+  }
+  
+  .category-zone h4 {
+    font-size: 1.2rem;
+  }
+  
+  .matched-object {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+}
+
